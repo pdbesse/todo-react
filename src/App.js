@@ -2,19 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import TodoList from './TodoList';
 import { v4 as uuidv4 } from 'uuid';
 
-const LOCAL_STORAGE_KEY = 'todoApp.todos';
+const LOCAL_STORAGE_KEY = 'todos';
 
 function App() {
   const [todos, setTodos] = useState([]);
   const todoNameRef = useRef();
 
   useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
+    const storedTodos = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEY))
     if (storedTodos) setTodos(storedTodos)
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
+    window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
 
   function toggleTodo(id) {
@@ -40,11 +40,13 @@ function App() {
 
   return (
     <>
-      <TodoList todos={todos} toggleTodo={toggleTodo} />
-      <input ref={todoNameRef} type='text' />
-      <button onClick={handleAddTodo}>Add todo</button>
-      <button onClick={handleClearTodos}>Clear complete</button>
-      <div>{todos.filter(todo => !todo.complete).length} left to do</div>
+      <div>
+        <TodoList todos={todos} toggleTodo={toggleTodo} />
+        <input ref={todoNameRef} type='text' />
+        <button className="flex items-center focus:outline-none mr-3" onClick={handleAddTodo}>Add todo</button>
+        <button onClick={handleClearTodos}>Clear complete</button>
+        <div>{todos.filter(todo => !todo.complete).length} left to do</div>
+      </div>
     </>
   )
 }
