@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import TodoList from './TodoList';
+import TodoList from './components/TodoList';
 import { v4 as uuidv4 } from 'uuid';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Row } from 'react-bootstrap';
+import { Row, Stack } from 'react-bootstrap';
+import './App.css';
 
 const LOCAL_STORAGE_KEY = 'todos';
 
@@ -43,20 +44,30 @@ function App() {
 
   return (
     <>
-      <Row className='container'>
-        <Form className='mx-auto col-6 align-self-center border-1'>
-          <div>
-            <Form.Group className='mb-3' controlId="formTodo">
-              <Form.Label className='m-5'>Add Todo</Form.Label>
-              <Form.Control type="text" placeholder="What do you have to do?" ref={todoNameRef} />
-            </Form.Group>
-          </div>
-          <Button className='btn btn-primary' onClick={handleAddTodo}>Add</Button>
-          <Button onClick={handleClearTodos}>Clear completed</Button>
-          <div>{todos.filter(todo => !todo.complete).length} left to do</div>
-        </Form>
-      </Row>
-      <TodoList todos={todos} toggleTodo={toggleTodo} />
+      <div className='form-container'>
+        <Row className='align-items-center'>
+          <Form className='mx-auto'>
+            <div>
+              <Form.Group controlId="formTodo">
+                <Stack gap={2}>
+                  <div className='label'>
+                    <Form.Label>Add Todo</Form.Label>
+                  </div>
+                  <div className='group'>
+                    <Form.Control type="text control" placeholder="What do you have to do?" ref={todoNameRef} />
+                  </div>
+                </Stack>
+              </Form.Group>
+            </div>
+            <Button variant="outline-success" className='button' onClick={handleAddTodo}>Add</Button>
+            <Button variant="outline-danger" className='button' size="large" onClick={handleClearTodos}>Clear completed</Button>
+            <div>{todos.filter(todo => !todo.complete).length} left to do</div>
+          </Form>
+        </Row>
+        <div className='todolist'>
+          <TodoList todos={todos} toggleTodo={toggleTodo} />
+        </div>
+      </div>
     </>
   )
 }

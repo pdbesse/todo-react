@@ -1,4 +1,5 @@
 import React from 'react'
+import './Todo.css'
 
 export default function Todo({ todo, toggleTodo }) {
     function handleTodoClick() {
@@ -6,7 +7,7 @@ export default function Todo({ todo, toggleTodo }) {
     }
 
     return (
-        <div className="bg-black-alt font-sans leading-normal tracking-normal">
+        <div className="">
             <label>
                 <input type='checkbox' checked={todo.complete} onChange={handleTodoClick} />
                 {todo.name}
