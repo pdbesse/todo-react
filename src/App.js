@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import TodoList from './TodoList';
 import { v4 as uuidv4 } from 'uuid';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { Row } from 'react-bootstrap';
 
 const LOCAL_STORAGE_KEY = 'todos';
 
@@ -40,13 +43,20 @@ function App() {
 
   return (
     <>
-      <div>
-        <TodoList todos={todos} toggleTodo={toggleTodo} />
-        <input ref={todoNameRef} type='text' />
-        <button className="flex items-center focus:outline-none mr-3" onClick={handleAddTodo}>Add todo</button>
-        <button onClick={handleClearTodos}>Clear complete</button>
-        <div>{todos.filter(todo => !todo.complete).length} left to do</div>
-      </div>
+      <Row className='container'>
+        <Form className='mx-auto col-6 align-self-center border-1'>
+          <div>
+            <Form.Group className='mb-3' controlId="formTodo">
+              <Form.Label className='m-5'>Add Todo</Form.Label>
+              <Form.Control type="text" placeholder="What do you have to do?" ref={todoNameRef} />
+            </Form.Group>
+          </div>
+          <Button className='btn btn-primary' onClick={handleAddTodo}>Add</Button>
+          <Button onClick={handleClearTodos}>Clear completed</Button>
+          <div>{todos.filter(todo => !todo.complete).length} left to do</div>
+        </Form>
+      </Row>
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
     </>
   )
 }
