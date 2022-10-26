@@ -2,15 +2,18 @@ import './App.css';
 import React, { useState, useRef, useEffect } from 'react';
 import Auth from "./utils/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Background from "./components/Background/Background";
+import LandingPage from "./components/LandingPage/LandingPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
+import Sidebar from "./components/Sidebar/Sidebar";
 import TodoList from './components/TodoList/TodoList';
 import Loader from "./components/Loader/Loader";
-// import { Col, Row } from "react-bootstrap";
+import Profile from "./components/Profile/Profile";
+import MediaQuery from "react-responsive";
 import { v4 as uuidv4 } from 'uuid';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { Col, Row, Stack } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 
 import {
   ApolloClient,
@@ -77,7 +80,49 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-
+      <Background>
+        <Header />
+        {Auth.loggedIn() && (
+          <MediaQuery maxWidth={1224}>
+            <Row>
+              {' '}
+              <Sidebar />
+            </Row>
+          </MediaQuery>
+        )}
+        <Row className="center">
+          {Auth.loggedIn() ? (
+            <>
+              {" "}
+              {}
+              <MediaQuery minWidth={1224}>
+                <Col md={1}>
+                  <Sidebar />
+                </Col>
+              </MediaQuery>
+              <Col md={11}>
+                {" "}
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/todo" element={<TodoList />} />
+                    <Route path="/profile" element={<Profile />} />
+                    {/* <Route path="/profiles/:_id" element={<Profile />} /> */}
+                  </Routes>
+                </BrowserRouter>
+              </Col>
+            </>
+          ) : (
+            <BrowserRouter>
+              <Routes>
+                <Route path="/profile" element={<Loader />} />
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/signin" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUp />} />
+              </Routes>
+            </BrowserRouter>
+          )}
+        </Row>
+      </Background>
     </ApolloProvider>
   )
 

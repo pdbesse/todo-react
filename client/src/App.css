@@ -36,3 +36,12 @@
 .todolist {
     margin: 5px;
 }
+
+body {
+    background: #212121;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+  
