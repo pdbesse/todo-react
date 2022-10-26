@@ -1,5 +1,5 @@
-import db from ('./connection');
-import { User } from ('../models');
+const db = require('./connection');
+const { User } = require('../models');
 
 db.once('open', async () => {
     await User.deleteMany();
@@ -16,4 +16,6 @@ db.once('open', async () => {
             }
         }
     );
+    console.log("Seeds have been seeded");
+    process.exit();
 });
