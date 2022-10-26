@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-import bcrypt from 'bcrypt';
+const bcrypt = require('bcrypt');
 
 var validateEmail = function (email) {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
