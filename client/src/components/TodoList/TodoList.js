@@ -1,5 +1,5 @@
 import React from 'react';
-import Todo from './Todo';
+import Todo from '../Todo/Todo';
 import './TodoList.css';
 
 export default function TodoList({ todos, toggleTodo }) {

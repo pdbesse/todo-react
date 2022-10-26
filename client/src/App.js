@@ -1,10 +1,43 @@
+import './App.css';
 import React, { useState, useRef, useEffect } from 'react';
-import TodoList from './components/TodoList';
+import Auth from "./utils/auth";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginPage from "./components/LoginPage/LoginPage";
+import SignUp from "./components/SignUp/SignUp";
+import TodoList from './components/TodoList/TodoList';
+import Loader from "./components/Loader/Loader";
+// import { Col, Row } from "react-bootstrap";
 import { v4 as uuidv4 } from 'uuid';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Row, Stack } from 'react-bootstrap';
-import './App.css';
+import { Col, Row, Stack } from 'react-bootstrap';
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+
+const httpLink = createHttpLink({
+  uri: "/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("id_token");
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 const LOCAL_STORAGE_KEY = 'todos';
 
@@ -43,33 +76,40 @@ function App() {
   }
 
   return (
-    <>
-      <div className='form-container'>
-        <Row className='align-items-center'>
-          <Form className='mx-auto'>
-            <div>
-              <Form.Group controlId="formTodo">
-                <Stack gap={2}>
-                  <div className='label'>
-                    <Form.Label>Add Todo</Form.Label>
-                  </div>
-                  <div className='group'>
-                    <Form.Control type="text control" placeholder="What do you have to do?" ref={todoNameRef} />
-                  </div>
-                </Stack>
-              </Form.Group>
-            </div>
-            <Button variant="outline-success" className='button' onClick={handleAddTodo}>Add</Button>
-            <Button variant="outline-danger" className='button' size="large" onClick={handleClearTodos}>Clear completed</Button>
-            <div>{todos.filter(todo => !todo.complete).length} left to do</div>
-          </Form>
-        </Row>
-        <div className='todolist'>
-          <TodoList todos={todos} toggleTodo={toggleTodo} />
-        </div>
-      </div>
-    </>
+    <ApolloProvider client={client}>
+
+    </ApolloProvider>
   )
+
+
+  // return (
+  //   <>
+  //     <div className='form-container'>
+  //       <Row className='align-items-center'>
+  //         <Form className='mx-auto'>
+  //           <div>
+  //             <Form.Group controlId="formTodo">
+  //               <Stack gap={2}>
+  //                 <div className='label'>
+  //                   <Form.Label>Add Todo</Form.Label>
+  //                 </div>
+  //                 <div className='group'>
+  //                   <Form.Control type="text control" placeholder="What do you have to do?" ref={todoNameRef} />
+  //                 </div>
+  //               </Stack>
+  //             </Form.Group>
+  //           </div>
+  //           <Button variant="outline-success" className='button' onClick={handleAddTodo}>Add</Button>
+  //           <Button variant="outline-danger" className='button' size="large" onClick={handleClearTodos}>Clear completed</Button>
+  //           <div>{todos.filter(todo => !todo.complete).length} left to do</div>
+  //         </Form>
+  //       </Row>
+  //       <div className='todolist'>
+  //         <TodoList todos={todos} toggleTodo={toggleTodo} />
+  //       </div>
+  //     </div>
+  //   </>
+  // )
 }
 
 export default App;
