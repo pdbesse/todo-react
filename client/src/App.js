@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import Auth from "./utils/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
@@ -10,7 +10,7 @@ import SignUp from "./components/SignUp/SignUp";
 import Sidebar from "./components/Sidebar/Sidebar";
 import TodoList from './components/TodoList/TodoList';
 import Loader from "./components/Loader/Loader";
-import Profile from "./components/Profile/Profile";
+// import Profile from "./components/Profile/Profile";
 import MediaQuery from "react-responsive";
 import { Col, Row } from 'react-bootstrap';
 
@@ -70,7 +70,7 @@ function App() {
                 <BrowserRouter>
                   <Routes>
                     <Route path="/todo" element={<TodoList />} />
-                    <Route path="/profile" element={<Profile />} />
+                    {/* <Route path="/profile" element={<Profile />} /> */}
                     {/* <Route path="/profiles/:_id" element={<Profile />} /> */}
                   </Routes>
                 </BrowserRouter>
@@ -90,36 +90,6 @@ function App() {
       </Background>
     </ApolloProvider>
   )
-
-
-  // return (
-  //   <>
-      // <div className='form-container'>
-      //   <Row className='align-items-center'>
-      //     <Form className='mx-auto'>
-      //       <div>
-      //         <Form.Group controlId="formTodo">
-      //           <Stack gap={2}>
-      //             <div className='label'>
-      //               <Form.Label>Add Todo</Form.Label>
-      //             </div>
-      //             <div className='group'>
-      //               <Form.Control type="text control" placeholder="What do you have to do?" ref={todoNameRef} />
-      //             </div>
-      //           </Stack>
-      //         </Form.Group>
-      //       </div>
-      //       <Button variant="outline-success" className='button' onClick={handleAddTodo}>Add</Button>
-      //       <Button variant="outline-danger" className='button' size="large" onClick={handleClearTodos}>Clear completed</Button>
-      //       <div>{todos.filter(todo => !todo.complete).length} left to do</div>
-      //     </Form>
-      //   </Row>
-      //   <div className='todolist'>
-      //     <TodoList todos={todos} toggleTodo={toggleTodo} />
-      //   </div>
-      // </div>
-  //   </>
-  // )
-}
+};
 
 export default App;
