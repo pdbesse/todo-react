@@ -21,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/pdbesse/todo-react/issues"
   },
-  "homepage": "https://github.com/pdbesse/todo-react#readme",
   "dependencies": {
     "concurrently": "^7.3.0",
     "dotenv": "^16.0.1",
