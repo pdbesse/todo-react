@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
-import { useDropzone } from "react-dropzone";
+// import { useDropzone } from "react-dropzone";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
-import MediaQuery from "react-responsive";
+// import MediaQuery from "react-responsive";
 import "./SignUp.css";
 
 const SignUp = () => {
@@ -13,7 +13,7 @@ const SignUp = () => {
     email: "",
     password: "",
   });
-  const [formState, setFormState] = useState({
+  const [profileState, setProfileState] = useState({
     firstName: "",
     lastName: "",
     location: "",
@@ -30,10 +30,10 @@ const SignUp = () => {
     });
   };
 
-  const handleChange = (event) => {
+  const handleProfileChange = (event) => {
     var { name, value } = event.target;
-    setFormState({
-      ...formState,
+    setProfileState({
+      ...profileState,
       [name]: value,
     });
   };
@@ -50,7 +50,7 @@ const SignUp = () => {
     const submit = {
       ...accountState,
       input: {
-        ...formState,
+        ...profileState,
         range: ageRange,
       },
     };
@@ -61,12 +61,12 @@ const SignUp = () => {
       });
 
       Auth.login(data.addUser.token);
-      window.location.href("/leetcode");
+      window.location.href("/todo");
     } catch (e) {
       console.error(e);
     }
 
-    setFormState({
+    setProfileState({
       firstName: "",
       lastName: "",
       age: "",
@@ -86,7 +86,7 @@ const SignUp = () => {
                   className="input"
                   placeholder="Email"
                   name="email"
-                  value={formState.email}
+                  value={profileState.email}
                   onChange={handleAccountChange}
                 />
                 <input
@@ -94,7 +94,7 @@ const SignUp = () => {
                   placeholder="Password"
                   type="password"
                   name="password"
-                  value={formState.password}
+                  value={profileState.password}
                   onChange={handleAccountChange}
                 />
               </Form>
@@ -108,24 +108,24 @@ const SignUp = () => {
                   className="input"
                   placeholder="First Name"
                   name="firstName"
-                  value={formState.firstName}
-                  onChange={handleChange}
+                  value={profileState.firstName}
+                  onChange={handleProfileChange}
                 />
                 <input
                   className="input"
                   type="text"
                   placeholder="Last Name"
                   name="lastName"
-                  value={formState.lastName}
-                  onChange={handleChange}
+                  value={profileState.lastName}
+                  onChange={handleProfileChange}
                 />
                 <input
                   className="input"
                   type="text"
                   placeholder="City"
                   name="location"
-                  value={formState.location}
-                  onChange={handleChange}
+                  value={profileState.location}
+                  onChange={handleProfileChange}
                 />
                 <input
                   className="input"
@@ -133,8 +133,8 @@ const SignUp = () => {
                   placeholder="Age"
                   min="18"
                   name="age"
-                  value={formState.age}
-                  onChange={handleChange}
+                  value={profileState.age}
+                  onChange={handleProfileChange}
                 />
 
                 <select
@@ -146,7 +146,7 @@ const SignUp = () => {
                   className="input"
                   id="dropdown-button-dark-example1"
                   name="gender"
-                  onChange={handleChange}
+                  onChange={handleProfileChange}
                 >
                   <option>Gender</option>
                   <option name="gender" value="She/Her">
