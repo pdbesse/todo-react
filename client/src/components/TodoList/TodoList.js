@@ -42,7 +42,7 @@ export default function TodoList() {
     }
 
     return (
-        <div className='form-container'>
+        <div className='todoContainer'>
             <Row className='align-items-center'>
                 <Form className='mx-auto'>
                     <div>

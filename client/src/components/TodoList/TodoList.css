@@ -1,0 +1,12 @@
+.todoContainer {
+background: rgba(00, 00, 00, 0.7);
+/* height: 80vh; */
+/* margin: 0 1rem; */
+margin: 0 auto;
+padding: 1rem;
+border-radius: 8px;
+/* position: relative; */
+width: 95%;
+color: white;
+}
+
