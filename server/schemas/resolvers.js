@@ -31,10 +31,12 @@ const dateScalar = new GraphQLScalarType({
       },
       me: async (parent, args, context) => {
         if (context.user) {
+          // console.log(context.user._id)
           return await User.findOne({ _id: context.user._id })
-            .populate("connections")
-            .populate({ path: "connections", populate: { path: "profile" } });
+            // .populate("connections")
+            // .populate({ path: "connections", populate: { path: "profile" } });
         }
+        console.log(context.user.id);
         throw new AuthenticationError("You need to be logged in!");
       },
     },
