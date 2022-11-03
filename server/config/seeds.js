@@ -12,7 +12,7 @@ db.once('open', async () => {
                 lastName: 'Besse',
                 age: 34,
                 location: 'Massachuseetts',
-                gender: 'He/His'
+                gender: 'He/Him'
             }
         }
     );
