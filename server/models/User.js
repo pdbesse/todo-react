@@ -36,9 +36,9 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.virtual("connectionCount").get(function () {
-  return this.connections.length;
-});
+// userSchema.virtual("connectionCount").get(function () {
+//   return this.connections.length;
+// });
 
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
