@@ -1,4 +1,5 @@
 import React from "react";
+import { FiCheckSquare } from "react-icons/fi";
 // import { ReactComponent as Logo } from "../../devEloper-02.svg";
 import Auth from "../../utils/auth";
 import "./Header.css";
@@ -12,8 +13,8 @@ const Header = () => {
   return (
     <div className="header">
       {Auth.loggedIn() ? (
-      <a href="/swipe" className="logo">
-        {/* <Logo /> */}
+      <a href="/todo" className="logo">
+        <FiCheckSquare />
       </a>
       ):(
       <a href="/" className="logo">
