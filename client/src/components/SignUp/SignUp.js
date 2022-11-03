@@ -38,11 +38,11 @@ const SignUp = () => {
     });
   };
 
-  const [ageRange, setAgeRange] = useState([21, 65]);
+  // const [ageRange, setAgeRange] = useState([21, 65]);
 
-  const handleAge = (Age) => {
-    setAgeRange(Age);
-  };
+  // const handleAge = (Age) => {
+  //   setAgeRange(Age);
+  // };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -51,7 +51,7 @@ const SignUp = () => {
       ...accountState,
       input: {
         ...profileState,
-        range: ageRange,
+        // range: ageRange,
       },
     };
 
