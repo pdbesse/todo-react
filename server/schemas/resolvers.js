@@ -56,10 +56,10 @@ const dateScalar = new GraphQLScalarType({
         }
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) {
-          throw new AuthenticationError("Incorrect credentials");
+          throw new AuthenticationError("Incorrect resolver credentials");
         }
         const token = signToken(user);
-        console.log(token);
+        // console.log(token);
   
         return { token, user };
       },
