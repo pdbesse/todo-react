@@ -7,10 +7,10 @@ import Background from "./components/Background/Background";
 import LandingPage from "./components/LandingPage/LandingPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
-import Sidebar from "./components/Sidebar/Sidebar";
+// import Sidebar from "./components/Sidebar/Sidebar";
 import TodoList from './components/TodoList/TodoList';
 import Loader from "./components/Loader/Loader";
-// import Profile from "./components/Profile/Profile";
+import Profile from "./components/Profile/Profile";
 import MediaQuery from "react-responsive";
 import { Col, Row } from 'react-bootstrap';
 
@@ -51,7 +51,7 @@ function App() {
           <MediaQuery maxWidth={1224}>
             <Row>
               {' '}
-              <Sidebar />
+              {/* <Sidebar /> */}
             </Row>
           </MediaQuery>
         )}
@@ -62,7 +62,7 @@ function App() {
               {}
               <MediaQuery minWidth={1224}>
                 <Col md={1}>
-                  <Sidebar />
+                  {/* <Sidebar /> */}
                 </Col>
               </MediaQuery>
               <Col md={11}>
@@ -70,8 +70,8 @@ function App() {
                 <BrowserRouter>
                   <Routes>
                     <Route path="/todo" element={<TodoList />} />
-                    {/* <Route path="/profile" element={<Profile />} /> */}
-                    {/* <Route path="/profiles/:_id" element={<Profile />} /> */}
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/profiles/:_id" element={<Profile />} />
                   </Routes>
                 </BrowserRouter>
               </Col>

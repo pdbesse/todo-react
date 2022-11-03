@@ -39,9 +39,9 @@
 
 body {
     background: #212121;
-  }
-  .center {
+}
+
+.center {
     display: flex;
     justify-content: center;
-  }
-  
+}
