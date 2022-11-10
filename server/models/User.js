@@ -27,6 +27,12 @@ const userSchema = new Schema(
       minlength: 8,
     },
     profile: profileSchema,
+    todos: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'ToDo',
+      },
+    ],
   },
   {
     toJSON: {
