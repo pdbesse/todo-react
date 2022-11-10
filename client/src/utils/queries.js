@@ -16,8 +16,29 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_TODO = gql`
+  query todo($id:: ID!) {
+    todo(_id: $id) {
+      _id
+      todoText
+      todoAuthor
+      createdAt
+    }
+  }
+`;
+
+export const QUERY_ALL_TODOS = gql`
+  query todos {
+    todos {
+      _id
+      todoText
+      todoAuthor
+      createdAt
+  }
+`;
+
 export const QUERY_ALL_USER = gql`
-  query users{
+  query users {
     users {
       _id
       email
