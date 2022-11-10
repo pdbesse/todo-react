@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, ToDo } = require("../models");
 const { signToken } = require("../utils/auth");
 const { GraphQLScalarType, Kind } = require("graphql");
 
@@ -39,6 +39,13 @@ const dateScalar = new GraphQLScalarType({
         console.log(context.user.id);
         throw new AuthenticationError("You need to be logged in!");
       },
+      todos: async (parent, { username }) => {
+        const params = username ? { username } : {};
+        return ToDo.find(params).sort({ createdAt: -1 });
+      },
+      todo: async (parent, { todoId }) => {
+        return ToDo.findOne({ _id: todoId });
+      },
     },
   
     Mutation: {
@@ -64,6 +71,16 @@ const dateScalar = new GraphQLScalarType({
         // console.log(token);
   
         return { token, user };
+      },
+      addToDo: async (parent, { todoText, todoAuthor }) => {
+        const todo = await ToDo.create({ todoText, todoAuthor });
+  
+        await User.findOneAndUpdate(
+          { username: todoAuthor },
+          { $addToSet: { todos: todo._id } }
+        );
+  
+        return todo;
       },
     },
   };

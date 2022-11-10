@@ -16,6 +16,14 @@ type User {
     email: String
     password: String
     profile: Profile
+    todos: [ToDo]!
+}
+
+type ToDo {
+    _id: ID
+    todoText: String
+    todoAuthor: String
+    createdAt: String
 }
 
 type Profile {
