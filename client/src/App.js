@@ -8,7 +8,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
 // import Sidebar from "./components/Sidebar/Sidebar";
-import TodoList from './components/TodoList/TodoList';
+import Todo from './components/Todos/index';
 import Loader from "./components/Loader/Loader";
 import Profile from "./components/Profile/Profile";
 import MediaQuery from "react-responsive";
@@ -69,7 +69,7 @@ function App() {
                 {" "}
                 <BrowserRouter>
                   <Routes>
-                    <Route path="/todo" element={<TodoList />} />
+                    <Route path="/todo" element={<Todo />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/profiles/:_id" element={<Profile />} />
                   </Routes>
