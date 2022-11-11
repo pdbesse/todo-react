@@ -12,6 +12,7 @@ const SignUp = () => {
   const [accountState, setAccountState] = useState({
     email: "",
     password: "",
+    username: ""
   });
   const [profileState, setProfileState] = useState({
     firstName: "",
@@ -91,6 +92,13 @@ const SignUp = () => {
                 />
                 <input
                   className="input"
+                  placeholder="Username"
+                  name="username"
+                  value={profileState.username}
+                  onChange={handleAccountChange}
+                />
+                <input
+                  className="input"
                   placeholder="Password"
                   type="password"
                   name="password"
@@ -162,9 +170,9 @@ const SignUp = () => {
               </Form>
             </div>
           </Row>
-            <Button className="signup" onClick={handleFormSubmit}>
-              SIGN UP
-            </Button>
+          <Button className="signup" onClick={handleFormSubmit}>
+            SIGN UP
+          </Button>
         </Col>
       </Row>
     </div>
