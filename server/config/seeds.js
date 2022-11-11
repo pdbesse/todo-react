@@ -1,8 +1,9 @@
 const db = require('./connection');
-const { User } = require('../models');
+const { User, ToDo } = require('../models');
 
 db.once('open', async () => {
     await User.deleteMany();
+    await ToDo.deleteMany();
     await User.create(
         {
             email: 'todo@mustdo.com',
