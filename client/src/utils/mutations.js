@@ -30,8 +30,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TODO = gql`
-  mutation addTodo($todoText: String!) {
-    addTodo(todoText: $todoText) {
+  mutation addToDo($todoText: String!, $username: String!) {
+    addToDo(todoText: $todoText, username: $username) {
       _id
       todoText
       username

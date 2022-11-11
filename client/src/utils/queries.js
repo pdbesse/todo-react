@@ -18,7 +18,7 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_TODO = gql`
-  query todo($id:: ID!) {
+  query todo($id: ID!) {
     todo(_id: $id) {
       _id
       todoText
@@ -36,6 +36,7 @@ export const QUERY_ALL_TODOS = gql`
       username
       createdAt
   }
+}
 `;
 
 export const QUERY_ALL_USER = gql`
