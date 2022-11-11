@@ -4,24 +4,22 @@ import {
     ADD_TODO,
     // REMOVE_TODO
 } from '../../../utils/mutations';
-import { QUERY_ME, QUERY_ALL_TODOS } from '../../../utils/queries';
+import { QUERY_ME } from '../../../utils/queries';
 import { Row, Stack, Form, Button } from 'react-bootstrap';
 // import { v4 as uuidv4 } from 'uuid';
 // import './TodoForm.css';
 
 export default function TodoList() {
+    
     const { loading, data } = useQuery(QUERY_ME);
     const username = data?.me?.username;
     // console.log(username);
 
-    // const { todoloading, tododata } = useQuery(QUERY_ALL_TODOS);
-    // const todos = tododata?.todos || [];
-
     const [todoState, setToDoState] = useState({
         todoText: '',
-        username: username
+        username: `${username}`
     });
-    console.log(todoState)
+    // console.log(todoState)
 
     const [addToDo, { error }] = useMutation(ADD_TODO);
     // const [removeToDo, {removeError}] = useMutation(REMOVE_TODO);
@@ -33,8 +31,6 @@ export default function TodoList() {
             const { data } = addToDo({
                 variables: { ...todoState }
             });
-            // console.log( todoState );
-
             // window.location.reload();
         } catch (err) {
             console.error(err);
@@ -46,7 +42,7 @@ export default function TodoList() {
 
         if (name === 'todoText') {
             setToDoState({ ...todoState, [name]: value });
-        }
+        } 
     };
 
     return (
@@ -61,7 +57,7 @@ export default function TodoList() {
                                 </div>
                                 <div className='group'>
                                     <Form.Control type="text control" placeholder="What do you have to do?" name='todoText'
-                                    onChange={handleChange} />
+                                        onChange={handleChange} />
                                 </div>
                             </Stack>
                         </Form.Group>
