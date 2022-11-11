@@ -4,6 +4,7 @@ export const QUERY_USER = gql`
   query user($id: ID!) {
     user(_id: $id) {
       _id
+      username
       email
       profile {
         firstName
@@ -21,7 +22,7 @@ export const QUERY_TODO = gql`
     todo(_id: $id) {
       _id
       todoText
-      todoAuthor
+      username
       createdAt
     }
   }
@@ -32,7 +33,7 @@ export const QUERY_ALL_TODOS = gql`
     todos {
       _id
       todoText
-      todoAuthor
+      username
       createdAt
   }
 `;
@@ -41,6 +42,7 @@ export const QUERY_ALL_USER = gql`
   query users {
     users {
       _id
+      username
       email
       profile {
         firstName
@@ -58,6 +60,7 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
+      username
       profile {
         firstName
         lastName
