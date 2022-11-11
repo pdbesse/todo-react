@@ -21,7 +21,7 @@ export default function TodoList() {
         todoText: '',
         username: username
     });
-    // console.log(username)
+    console.log(todoState)
 
     const [addToDo, { error }] = useMutation(ADD_TODO);
     // const [removeToDo, {removeError}] = useMutation(REMOVE_TODO);
@@ -33,7 +33,7 @@ export default function TodoList() {
             const { data } = addToDo({
                 variables: { ...todoState }
             });
-            console.log({...todoState});
+            // console.log( todoState );
 
             // window.location.reload();
         } catch (err) {
@@ -60,8 +60,8 @@ export default function TodoList() {
                                     <Form.Label>Add Todo</Form.Label>
                                 </div>
                                 <div className='group'>
-                                    <Form.Control type="text control" placeholder="What do you have to do?"
-                                        onChange={handleChange} />
+                                    <Form.Control type="text control" placeholder="What do you have to do?" name='todoText'
+                                    onChange={handleChange} />
                                 </div>
                             </Stack>
                         </Form.Group>
