@@ -13,6 +13,7 @@ input profile {
 
 type User {
     _id: ID
+    username: String
     email: String
     password: String
     profile: Profile
@@ -46,8 +47,8 @@ type Query {
 }
 
 type Mutation {
-    addUser(email: String!, password: String!, input: profile!): Auth
-    login(email: String!, password: String!): Auth
+    addUser(username: String!, password: String!, input: profile!): Auth
+    login(username: String!, password: String!): Auth
 }
 `;
 

@@ -50,18 +50,18 @@ const dateScalar = new GraphQLScalarType({
   
     Mutation: {
       addUser: async (parent, body) => {
-        const email = body.email;
+        const username = body.username;
         const password = body.password;
-        const user = await User.create({ email, password });
+        const user = await User.create({ username, password });
         const token = signToken(user);
         user.profile = body.input;
         await user.save();
         return { token, user };
       },
-      login: async (parent, { email, password }) => {
-        const user = await User.findOne({ email });
+      login: async (parent, { username, password }) => {
+        const user = await User.findOne({ username });
         if (!user) {
-          throw new AuthenticationError("No user found with this email");
+          throw new AuthenticationError("No user found with this username");
         }
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) {
@@ -72,11 +72,11 @@ const dateScalar = new GraphQLScalarType({
   
         return { token, user };
       },
-      addToDo: async (parent, { todoText, todoAuthor }) => {
-        const todo = await ToDo.create({ todoText, todoAuthor });
+      addToDo: async (parent, { todoText, username }) => {
+        const todo = await ToDo.create({ todoText, username });
   
         await User.findOneAndUpdate(
-          { username: todoAuthor },
+          { username: username },
           { $addToSet: { todos: todo._id } }
         );
   
