@@ -7,6 +7,7 @@ db.once('open', async () => {
         {
             email: 'todo@mustdo.com',
             password: 'password',
+            username: 'todo',
             profile: {
                 firstName: 'Phil',
                 lastName: 'Besse',
