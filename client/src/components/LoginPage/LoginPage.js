@@ -6,22 +6,22 @@ import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 const LoginPage = () => {
-  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [formState, setFormState] = useState({ username: "", password: "" });
   const [login] = useMutation(LOGIN_USER);
   const [errors, setErrors] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === "email") {
-      if (
-        value.match(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/i) === null
-      ) {
-        setErrors("Email is invalid");
-      } else {
-        setErrors("");
-      }
-    }
+    // if (name === "email") {
+    //   if (
+    //     value.match(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/i) === null
+    //   ) {
+    //     setErrors("Email is invalid");
+    //   } else {
+    //     setErrors("");
+    //   }
+    // }
 
     setFormState({
       ...formState,
@@ -42,7 +42,7 @@ const LoginPage = () => {
     }
 
     setFormState({
-      email: "",
+      username: "",
       password: "",
     });
   };
@@ -53,9 +53,9 @@ const LoginPage = () => {
       <h4 className="side_text">Sign In to continue</h4>
       <input
         className="login_input"
-        placeholder="email"
-        name="email"
-        value={formState.email}
+        placeholder="username"
+        name="username"
+        value={formState.username}
         onChange={handleChange}
       />
 
