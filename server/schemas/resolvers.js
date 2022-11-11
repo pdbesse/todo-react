@@ -36,7 +36,7 @@ const dateScalar = new GraphQLScalarType({
             // .populate("connections")
             // .populate({ path: "connections", populate: { path: "profile" } });
         }
-        console.log(context.user.id);
+        // console.log(context.user.id);
         throw new AuthenticationError("You need to be logged in!");
       },
       todos: async (parent, { username }) => {
@@ -82,6 +82,9 @@ const dateScalar = new GraphQLScalarType({
   
         return todo;
       },
+      removeToDo: async (parent, {todoId}) => {
+        return ToDo.findOneAndDelete({ _id: todoId});
+      }
     },
   };
   

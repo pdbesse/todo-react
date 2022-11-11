@@ -6,7 +6,7 @@ const todoSchema = new Schema(
         type: String,
         required: true,
       },
-      todoAuthor: {
+      username: {
         type: String,
         required: true,
         trim: true,

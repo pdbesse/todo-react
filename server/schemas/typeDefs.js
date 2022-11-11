@@ -23,7 +23,7 @@ type User {
 type ToDo {
     _id: ID
     todoText: String
-    todoAuthor: String
+    username: String
     createdAt: String
 }
 
@@ -43,12 +43,16 @@ type Auth {
 type Query {
     users: [User]
     user(_id: ID!): User
+    todos: [ToDo]
+    todo(_id: ID!): ToDo
     me: User
 }
 
 type Mutation {
     addUser(username: String!, password: String!, input: profile!): Auth
     login(username: String!, password: String!): Auth
+    addToDo(todoText: String!, username: String!): ToDo
+    removeToDo(todoId: ID!): ToDo
 }
 `;
 
