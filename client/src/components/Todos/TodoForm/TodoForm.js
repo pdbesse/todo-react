@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
+import { useUserContext } from '../../../utils/userContext';
 import { useMutation, useQuery } from '@apollo/client';
 import {
     ADD_TODO,
     // REMOVE_TODO
 } from '../../../utils/mutations';
 import { QUERY_ME } from '../../../utils/queries';
+// import Loader from '../../Loader/Loader';
 import { Row, Stack, Form, Button } from 'react-bootstrap';
 // import { v4 as uuidv4 } from 'uuid';
 // import './TodoForm.css';
 
-export default function TodoList() {
-    
-    const { loading, data } = useQuery(QUERY_ME);
-    const username = data?.me?.username;
+export default function TodoList({ me_username }) {
+
+    // const { username } = useUserContext;
+
+    // const { loading, data } = useQuery(QUERY_ME);
+    // const username = data?.me?.username;
     // console.log(username);
+
+    // if (loading) {
+    //     return <Loader />;
+    // } 
 
     const [todoState, setToDoState] = useState({
         todoText: '',
-        username: `${username}`
+        username: `${me_username}`
     });
     // console.log(todoState)
 
@@ -31,10 +39,15 @@ export default function TodoList() {
             const { data } = addToDo({
                 variables: { ...todoState }
             });
-            // window.location.reload();
+            // console.log(data)
         } catch (err) {
             console.error(err);
         }
+
+        setToDoState({
+            todoText: ''
+        })
+        // window.location.reload();
     };
 
     const handleChange = (event) => {
@@ -42,7 +55,7 @@ export default function TodoList() {
 
         if (name === 'todoText') {
             setToDoState({ ...todoState, [name]: value });
-        } 
+        }
     };
 
     return (
