@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useUserContext } from '../../../utils/userContext';
+// import { useUserContext } from '../../../utils/userContext';
 import { useMutation, useQuery } from '@apollo/client';
 import {
     ADD_TODO,
@@ -11,13 +11,15 @@ import { Row, Stack, Form, Button } from 'react-bootstrap';
 // import { v4 as uuidv4 } from 'uuid';
 // import './TodoForm.css';
 
-export default function TodoList({ me_username }) {
+export default function TodoList(
+    // { me_username }
+    ) {
 
     // const { username } = useUserContext;
 
-    // const { loading, data } = useQuery(QUERY_ME);
-    // const username = data?.me?.username;
-    // console.log(username);
+    const { loading, data } = useQuery(QUERY_ME);
+    const me_username = data?.me?.username;
+    console.log(me_username);
 
     // if (loading) {
     //     return <Loader />;

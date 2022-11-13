@@ -1,14 +1,18 @@
 import React from 'react'
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_TODOS, QUERY_ME } from '../../../utils/queries';
 import './TodoList.css'
 
-export default function TodoList({ todos, title }) {
+export default function TodoList() {
+    const { todo_loading, todo_data } = useQuery(QUERY_ALL_TODOS);
+    const todos = todo_data?.todos || [];
     if (!todos.length) {
         return <h3 className='todos'>No Todos Yet</h3>;
     }
 
     return (
         <div>
-            <h3>{title}</h3>
+            <h3>Your Todos</h3>
             {todos &&
                 todos.map((todo) => (
                     <div key={todo._id} className="card mb-3">
