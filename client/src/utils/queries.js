@@ -32,7 +32,7 @@ export const QUERY_TODO = gql`
   }
 `;
 
-export const QUERY_ALL_TODOS = gql`
+export const QUERY_MY_TODOS = gql`
   query todos($username: String!) {
     todos(username: $username) {
       _id

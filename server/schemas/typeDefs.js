@@ -43,7 +43,7 @@ type Auth {
 type Query {
     users: [User]
     user(_id: ID!): User
-    todos: [ToDo]
+    todos(username: String!): [ToDo]
     todo(_id: ID!): ToDo
     me: User
 }
