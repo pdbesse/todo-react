@@ -16,6 +16,18 @@ db.once('open', async () => {
                 location: 'Massachuseetts',
                 gender: 'He/Him'
             }
+        },
+        {
+            email: 'email@mustdo.com',
+            password: 'password',
+            username: 'mustdo',
+            profile: {
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 23,
+                location: 'New York',
+                gender: 'He/Him'
+            }
         }
     );
     await ToDo.create(
@@ -26,7 +38,7 @@ db.once('open', async () => {
         },
         {
             todoText: 'do this second',
-            username: 'todo',
+            username: 'mustdo',
             createdAt: ''
         }
     );
