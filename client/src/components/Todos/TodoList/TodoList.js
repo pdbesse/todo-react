@@ -6,7 +6,11 @@ import './TodoList.css'
 export default function TodoList() {
     const { loading: todo_loading, data: todo_data } = useQuery(QUERY_ALL_TODOS);
     const todos = todo_data?.todos || [];
-    // console.log(todo_data)
+
+    if (todo_loading) {
+        return <h3>Loading...</h3>;
+    }
+    
     if (!todos.length) {
         return <h3 className='todos'>No Todos Yet</h3>;
     }
