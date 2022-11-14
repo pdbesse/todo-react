@@ -13,6 +13,10 @@ export const QUERY_USER = gql`
         location
         gender
       }
+      todos {
+        todoText
+        createdAt
+      }
     }
   }
 `;
@@ -29,8 +33,8 @@ export const QUERY_TODO = gql`
 `;
 
 export const QUERY_ALL_TODOS = gql`
-  query todos {
-    todos {
+  query todos($username: String!) {
+    todos(username: $username) {
       _id
       todoText
       username
@@ -52,6 +56,10 @@ export const QUERY_ALL_USER = gql`
         location
         gender
       }
+      todos {
+        todoText
+        createdAt
+      }
     }
   }
 `;
@@ -68,6 +76,10 @@ export const QUERY_ME = gql`
         age
         location
         gender
+      }
+      todos {
+        todoText
+        createdAt
       }
     }
   }
