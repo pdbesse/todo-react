@@ -18,6 +18,18 @@ db.once('open', async () => {
             }
         }
     );
+    await ToDo.create(
+        {
+            todoText: 'do this first',
+            username: 'todo',
+            createdAt: ''
+        },
+        {
+            todoText: 'do this second',
+            username: 'todo',
+            createdAt: ''
+        }
+    );
     console.log("Seeds have been seeded");
     process.exit();
 });
