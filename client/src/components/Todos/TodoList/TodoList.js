@@ -1,11 +1,12 @@
 import React from 'react'
 import { useQuery } from '@apollo/client';
-import { QUERY_ALL_TODOS, QUERY_ME } from '../../../utils/queries';
+import { QUERY_ALL_TODOS } from '../../../utils/queries';
 import './TodoList.css'
 
 export default function TodoList() {
-    const { todo_loading, todo_data } = useQuery(QUERY_ALL_TODOS);
+    const { loading: todo_loading, data: todo_data } = useQuery(QUERY_ALL_TODOS);
     const todos = todo_data?.todos || [];
+    // console.log(todo_data)
     if (!todos.length) {
         return <h3 className='todos'>No Todos Yet</h3>;
     }
