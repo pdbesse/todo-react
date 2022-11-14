@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 // import { useUserContext } from '../../../utils/userContext';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import {
     ADD_TODO,
     // REMOVE_TODO
@@ -21,7 +21,7 @@ export default function TodoList() {
                     query: QUERY_ALL_TODOS,
                     data: { todos: [addToDo, ...todos] },
                 });
-                console.log(cache)
+                // console.log(cache)
             } catch (e) {
                 console.error(e);
             }
