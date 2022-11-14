@@ -24,19 +24,17 @@ const dateScalar = new GraphQLScalarType({
     Date: dateScalar,
     Query: {
       users: async () => {
-        return User.find().populate("connections");
+        return User.find().populate("todos");
       },
       user: async (parent, { _id }) => {
-        return User.findById(_id);
+        return User.findById(_id).populate('todos');
       },
       me: async (parent, args, context) => {
         if (context.user) {
-          // console.log(context.user._id)
-          return await User.findOne({ _id: context.user._id })
-            // .populate("connections")
+          return await User.findOne({ _id: context.user._id }).populate('todos');
+            // .populate("todos")
             // .populate({ path: "connections", populate: { path: "profile" } });
         }
-        // console.log(context.user.id);
         throw new AuthenticationError("You need to be logged in!");
       },
       todos: async (parent, { username }) => {
@@ -72,7 +70,8 @@ const dateScalar = new GraphQLScalarType({
   
         return { token, user };
       },
-      addToDo: async (parent, { todoText, username }) => {
+      addToDo: async (parent, { todoText, username }, context) => {
+        if (context.user) {
         const todo = await ToDo.create({ todoText, username });
   
         await User.findOneAndUpdate(
@@ -81,6 +80,8 @@ const dateScalar = new GraphQLScalarType({
         );
   
         return todo;
+      }
+      throw new AuthenticationError('You need to be logged in!');
       },
       removeToDo: async (parent, {todoId}) => {
         return ToDo.findOneAndDelete({ _id: todoId});
