@@ -5,13 +5,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserProvider } from './utils/userContext';
 import Header from "./components/Header/Header";
 import Background from "./components/Background/Background";
-import LandingPage from "./components/LandingPage/LandingPage";
-import LoginPage from "./components/LoginPage/LoginPage";
-import SignUp from "./components/SignUp/SignUp";
+import LandingPage from "./Pages/LandingPage/LandingPage";
+import LoginPage from "./Pages/LoginPage/LoginPage";
+import SignUp from "./Pages/SignUp/SignUp";
 // import Sidebar from "./components/Sidebar/Sidebar";
-import Todo from './components/Todos/index';
+import Todo from './Pages/Todo/index';
 import Loader from "./components/Loader/Loader";
-import Profile from "./components/Profile/Profile";
+import Profile from "./Pages/Profile/Profile";
 import MediaQuery from "react-responsive";
 import { Col, Row } from 'react-bootstrap';
 

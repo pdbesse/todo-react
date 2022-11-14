@@ -7,7 +7,7 @@ import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 // import InterestList from "./InterestList";
 // import MediaQuery from "react-responsive";
 import "./Profile.css";
-import Loader from "../Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 // import { AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai";
 
 const Profile = () => {
