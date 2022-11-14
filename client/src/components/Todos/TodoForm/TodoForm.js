@@ -5,30 +5,46 @@ import {
     ADD_TODO,
     // REMOVE_TODO
 } from '../../../utils/mutations';
-import { QUERY_ME } from '../../../utils/queries';
-import Loader from '../../Loader/Loader';
+import { QUERY_ME, QUERY_ALL_TODOS } from '../../../utils/queries';
+// import Loader from '../../Loader/Loader';
 import { Row, Stack, Form, Button } from 'react-bootstrap';
+import Auth from '../../../utils/auth';
 // import './TodoForm.css';
 
-export default function TodoList(
-    // { me_username }
-    ) {
-        const [addToDo, { error }] = useMutation(ADD_TODO);
-    // const { username } = useUserContext;
+export default function TodoList() {
+    const [addToDo, { error }] = useMutation(ADD_TODO, {
+        update(cache, { data: { addToDo } }) {
+            try {
+                const { todos } = cache.readQuery({ query: QUERY_ALL_TODOS });
 
-    const { loading, data } = useQuery(QUERY_ME);
-    const username = data?.me?.username;
-    console.log(username);
+                cache.writeQuery({
+                    query: QUERY_ALL_TODOS,
+                    data: { todos: [addToDo, ...todos] },
+                });
+                console.log(cache)
+            } catch (e) {
+                console.error(e);
+            }
 
-    // if (loading) {
-    //     return <h3>Loading...</h3>;
-    // }
+            // update me object's cache
+            const { me } = cache.readQuery({ query: QUERY_ME });
+            console.log({ me })
+            cache.writeQuery({
+                query: QUERY_ME,
+                data: { me: { ...me, todos: [...me.todos, addToDo] } },
+            });
+        },
+    }
+    );
 
-    const [todoState, setToDoState] = useState({
+    // const { loading, data } = useQuery(QUERY_ME);
+    // const username = data?.me?.username;
+    // console.log(username);
+
+    const [todoText, setTodoText] = useState({
         todoText: '',
-        username: `${username}`
     });
-    console.log(todoState)
+    // console.log(todoText, Auth.getProfile().data.username)
 
     // const [removeToDo, {removeError}] = useMutation(REMOVE_TODO);
 
@@ -37,56 +53,67 @@ export default function TodoList(
 
         try {
             const { data } = addToDo({
-                variables: { ...todoState }
+                variables: {
+                    todoText,
+                    username: Auth.getProfile().data.username
+                }
             });
-            // console.log(data)
+            // console.log(Auth.getProfile().data.username)
+
+            setTodoText({
+                todoText: ''
+            })
         } catch (err) {
             console.error(err);
         }
-
-        setToDoState({
-            todoText: ''
-        })
-        // window.location.reload();
     };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
 
         if (name === 'todoText') {
-            setToDoState({ ...todoState, todoText: value, username: username });
+            setTodoText(value);
+            // setTodoText({ ...todoState, todoText: value, username: username });
         }
     };
-    if (loading) {
-        return <h3>Loading...</h3>;
-    } else {
+
+    // if (loading) {
+    //     return <h3>Loading...</h3>;
+    // } else {
     return (
-        <div className='todoContainer'>
-            <Row className='align-items-center'>
-                <Form className='mx-auto' onSubmit={handleFormSubmit}>
-                    <div>
-                        <Form.Group controlId="formTodo">
-                            <Stack gap={2}>
-                                <div className='label todos'>
-                                    <Form.Label>Add Todo</Form.Label>
-                                </div>
-                                <div className='group'>
-                                    <Form.Control type="text control" placeholder="What do you have to do?" name='todoText'
-                                        onChange={handleChange} />
-                                </div>
-                            </Stack>
-                        </Form.Group>
-                    </div>
-                    <Button variant="outline-success" className='button' type='submit'>Add</Button>
-                </Form>
-                <Button variant="outline-danger" className='button' size="large"
-                // onClick={handleClearTodos}
-                >Clear completed</Button>
-            </Row>
+        <div>
+            {Auth.loggedIn() ? (
+                <div className='todoContainer'>
+                    <Row className='align-items-center'>
+                        <Form className='mx-auto' onSubmit={handleFormSubmit}>
+                            <div>
+                                <Form.Group controlId="formTodo">
+                                    <Stack gap={2}>
+                                        <div className='label todos'>
+                                            <Form.Label>Add Todo</Form.Label>
+                                        </div>
+                                        <div className='group'>
+                                            <Form.Control type="text control" placeholder="What do you have to do?" name='todoText'
+                                                onChange={handleChange} />
+                                        </div>
+                                    </Stack>
+                                </Form.Group>
+                            </div>
+                            <Button variant="outline-success" className='button' type='submit'>Add</Button>
+                        </Form>
+                        <Button variant="outline-danger" className='button' size="large"
+                        // onClick={handleClearTodos}
+                        >Clear completed</Button>
+                    </Row>
+                </div>
+            ) : (
+                <p>Please Login</p>
+            )
+            }
         </div>
     )
 }
-    };
+// };
 
 
   // const LOCAL_STORAGE_KEY = 'todos';
