@@ -5,36 +5,42 @@ import {
     ADD_TODO,
     // REMOVE_TODO
 } from '../../../utils/mutations';
-import { QUERY_ME, QUERY_ALL_TODOS } from '../../../utils/queries';
+import { QUERY_ME, QUERY_MY_TODOS } from '../../../utils/queries';
 // import Loader from '../../Loader/Loader';
 import { Row, Stack, Form, Button } from 'react-bootstrap';
 import Auth from '../../../utils/auth';
 // import './TodoForm.css';
 
 export default function TodoList() {
-    const [addToDo, { error }] = useMutation(ADD_TODO, {
-        update(cache, { data: { addToDo } }) {
-            try {
-                const { todos } = cache.readQuery({ query: QUERY_ALL_TODOS });
+    const [addToDo, { error }] = useMutation(ADD_TODO
+        , {
+            update(cache, { data: { addToDo } }) {
+                try {
+                    const { todos } = cache.readQuery({
+                        query: QUERY_MY_TODOS,
+                        variables: {
+                            username: Auth.getProfile().data.username
+                        }
+                    });
 
+                    cache.writeQuery({
+                        query: QUERY_MY_TODOS,
+                        data: { todos: [addToDo, ...todos] },
+                    });
+                    // console.log({todos})
+                } catch (e) {
+                    console.error(e);
+                }
+
+                // update me object's cache
+                const { me } = cache.readQuery({ query: QUERY_ME });
+                console.log({ me })
                 cache.writeQuery({
-                    query: QUERY_ALL_TODOS,
-                    data: { todos: [addToDo, ...todos] },
+                    query: QUERY_ME,
+                    data: { me: { ...me, todos: [...me.todos, addToDo] } },
                 });
-                // console.log(cache)
-            } catch (e) {
-                console.error(e);
-            }
-
-            // update me object's cache
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            console.log({ me })
-            cache.writeQuery({
-                query: QUERY_ME,
-                data: { me: { ...me, todos: [...me.todos, addToDo] } },
-            });
-        },
-    }
+            },
+        }
     );
 
     // const { loading, data } = useQuery(QUERY_ME);
