@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 // import { useUserContext } from '../../../utils/userContext';
 import { useMutation, useQuery } from '@apollo/client';
 import {
@@ -6,32 +6,30 @@ import {
     // REMOVE_TODO
 } from '../../../utils/mutations';
 import { QUERY_ME } from '../../../utils/queries';
-// import Loader from '../../Loader/Loader';
+import Loader from '../../Loader/Loader';
 import { Row, Stack, Form, Button } from 'react-bootstrap';
-// import { v4 as uuidv4 } from 'uuid';
 // import './TodoForm.css';
 
 export default function TodoList(
     // { me_username }
     ) {
-
+        const [addToDo, { error }] = useMutation(ADD_TODO);
     // const { username } = useUserContext;
 
     const { loading, data } = useQuery(QUERY_ME);
-    const me_username = data?.me?.username;
-    console.log(me_username);
+    const username = data?.me?.username;
+    console.log(username);
 
     // if (loading) {
-    //     return <Loader />;
-    // } 
+    //     return <h3>Loading...</h3>;
+    // }
 
     const [todoState, setToDoState] = useState({
         todoText: '',
-        username: `${me_username}`
+        username: `${username}`
     });
-    // console.log(todoState)
+    console.log(todoState)
 
-    const [addToDo, { error }] = useMutation(ADD_TODO);
     // const [removeToDo, {removeError}] = useMutation(REMOVE_TODO);
 
     const handleFormSubmit = async (event) => {
@@ -56,10 +54,12 @@ export default function TodoList(
         const { name, value } = event.target;
 
         if (name === 'todoText') {
-            setToDoState({ ...todoState, [name]: value });
+            setToDoState({ ...todoState, todoText: value, username: username });
         }
     };
-
+    if (loading) {
+        return <h3>Loading...</h3>;
+    } else {
     return (
         <div className='todoContainer'>
             <Row className='align-items-center'>
@@ -85,7 +85,8 @@ export default function TodoList(
             </Row>
         </div>
     )
-};
+}
+    };
 
 
   // const LOCAL_STORAGE_KEY = 'todos';
