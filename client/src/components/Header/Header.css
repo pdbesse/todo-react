@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.sign_in {
+/* .sign_in {
   background: #7d7d7d;
   padding: 10px;
   border-radius: 16px;
@@ -21,13 +21,40 @@
 
   background-color: #7d7d7d;
   text-decoration: none;
+} */
+
+.sign_in {
+  background: #496bff;
+  text-decoration: none;
+  padding: 16px;
+  color: black;
+  font-size: 1rem;
+  font-weight: bolder;
+  border-radius: 72px;
+  border: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin: 10px 0 8px 0;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  /* background-image: linear-gradient(-45deg, #000000, #496bff); */
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4),
+    -6px -6px 12px rgba(255, 255, 255, 1);
+}
+.sign_in:hover,
+.sign_in:focus {
+  cursor: pointer;
+  color: black;
+  border-radius: 83px;
+  background: #496bff;
+  box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.3),
+    inset -6px -6px 12px rgba(255, 255, 255, 0.2);
 }
 
-.sign_in:hover {
+/* .sign_in:hover { */
   /* border-radius: 15px;
     background: #212121;
     box-shadow: inset 5px -5px 10px #231d1d, inset -5px 5px 10px #2b2323; */
-}
+/* } */
 
 @media screen and (max-width: 810px) {
   .logo {
