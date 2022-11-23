@@ -50,7 +50,7 @@ const LoginPage = () => {
   return (
     <Form className="login_form" onSubmit={handleFormSubmit}>
       <h2>Welcome Back</h2>
-      <h4 className="side_text">Sign In to continue</h4>
+      <h4 className="side_text">Sign in to continue</h4>
       <input
         className="login_input"
         placeholder="username"

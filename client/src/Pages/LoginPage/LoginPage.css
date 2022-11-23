@@ -40,7 +40,7 @@
   .reset_btn {
     border: none;
     background: transparent;
-    color: #a30e3b;
+    color: #496bff;
   }
   
   .login_input {
@@ -49,7 +49,7 @@
     margin: 2px;
     padding: 16px 0;
     font-size: 16px;
-    border-bottom: 1px solid #a30e3b;
+    border-bottom: 1px solid #496bff;
   }
   .login_input::placeholder {
     color: #999999;
@@ -57,14 +57,14 @@
   }
   .login_input:focus {
     color: black;
-    border-bottom: 2px solid #a30e3b;
+    border-bottom: 2px solid #496bff;
     outline: none;
   }
   
   .reset_btn:hover,
   .reset_btn:focus {
     background: transparent;
-    color: #a30e3b;
+    color: #496bff;
     opacity: 0.7;
   }
   .remember_me {
@@ -79,10 +79,10 @@
     appearance: none;
     margin: 0;
     font: inherit;
-    color: #e67a8d;
+    color: #496bff;
     width: 16px;
     height: 16px;
-    border: 0.15em solid #e67a8d;
+    border: 0.15em solid #496bff;
     border-radius: 0.15em;
     margin-right: 5px;
     transform: translateY(-0.075em);
@@ -99,17 +99,17 @@
     box-shadow: 5px 5px 10px #a5a5a5, -5px -5px 10px #ffffff;
   }
   .signup_btn:hover {
-    background: #e67a8d;
+    background: #496bff;
     cursor: pointer;
     border-radius: 83px;
     background: #d3d3d3;
     box-shadow: inset 5px 5px 10px #a5a5a5, inset -5px -5px 10px #ffffff;
   }
   .checkbox {
-    border: 2px solid #e67a8d;
+    border: 2px solid #496bff;
   }
   .signin_btn {
-    background: #a30e3b;
+    background: #496bff;
     padding: 16px;
     color: black;
     font-size: 1rem;
@@ -120,7 +120,7 @@
     margin: 10px 0 8px 0;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
-    background-image: linear-gradient(-45deg, #b7224f, #a30e3b, #8f0027);
+    background-image: linear-gradient(-45deg, #000000, #496bff, #000000);
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4),
       -6px -6px 12px rgba(255, 255, 255, 1);
   }
@@ -129,7 +129,7 @@
     cursor: pointer;
     color: black;
     border-radius: 83px;
-    background: #a30e3b;
+    background: #496bff;
     box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.3),
       inset -6px -6px 12px rgba(255, 255, 255, 0.2);
   }
