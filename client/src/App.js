@@ -52,7 +52,7 @@ function App() {
         {/* <Background> */}
           <Header />
           {Auth.loggedIn() && (
-            <MediaQuery maxWidth={1224}>
+            <MediaQuery maxWidth={2000}>
               <Row>
                 {' '}
                 <Sidebar />
@@ -65,7 +65,7 @@ function App() {
               <>
                 {" "}
                 { }
-                <MediaQuery minWidth={1224}>
+                <MediaQuery minWidth={2000}>
                   <Col md={1}>
                     <Sidebar />
                   </Col>
