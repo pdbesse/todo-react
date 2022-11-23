@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import Auth from "./utils/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { UserProvider } from './utils/userContext';
+// import { UserProvider } from './utils/userContext';
 import Header from "./components/Header/Header";
-import Background from "./components/Background/Background";
+// import Background from "./components/Background/Background";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import SignUp from "./Pages/SignUp/SignUp";
@@ -12,6 +12,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import Todo from './Pages/Todo/index';
 import Loader from "./components/Loader/Loader";
 import Profile from "./Pages/Profile/Profile";
+import Sidebar from './components/Sidebar/Sidebar';
 import MediaQuery from "react-responsive";
 import { Col, Row } from 'react-bootstrap';
 
@@ -42,21 +43,23 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const renderPages = () => {};
 function App() {
 
   return (
     <ApolloProvider client={client}>
-      <UserProvider>
-        <Background>
+      {/* <UserProvider> */}
+        {/* <Background> */}
           <Header />
           {Auth.loggedIn() && (
             <MediaQuery maxWidth={1224}>
               <Row>
                 {' '}
-                {/* <Sidebar /> */}
+                <Sidebar />
               </Row>
             </MediaQuery>
           )}
+
           <Row className="center">
             {Auth.loggedIn() ? (
               <>
@@ -64,7 +67,7 @@ function App() {
                 { }
                 <MediaQuery minWidth={1224}>
                   <Col md={1}>
-                    {/* <Sidebar /> */}
+                    <Sidebar />
                   </Col>
                 </MediaQuery>
                 <Col md={11}>
@@ -89,8 +92,8 @@ function App() {
               </BrowserRouter>
             )}
           </Row>
-        </Background>
-      </UserProvider>
+        {/* </Background> */}
+      {/* </UserProvider> */}
     </ApolloProvider >
   )
 };
