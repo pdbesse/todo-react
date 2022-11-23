@@ -14,7 +14,7 @@ const Header = () => {
     <div className="header">
       {Auth.loggedIn() ? (
       <a href="/todo" className="logo">
-        <FiCheckSquare />
+        {/* <FiCheckSquare /> */}
       </a>
       ):(
       <a href="/" className="logo">
