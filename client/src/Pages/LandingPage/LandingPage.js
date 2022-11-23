@@ -10,7 +10,7 @@ const LandingPage = () => {
         <div className="tag">
           {/* <h1>Where They Always Promise To Callback()</h1> */}
           <Link className=" btn matchBtn" to={"/signup"}>
-            Sign In
+            Sign Up
           </Link>
         </div>
       </Row>
