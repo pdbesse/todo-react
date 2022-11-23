@@ -1,6 +1,7 @@
 import React from "react";
-// import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { FiCheckSquare } from "react-icons/fi";
+import { AiFillHome } from "react-icons/ai";
 import "./Sidebar.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
@@ -10,7 +11,7 @@ const Sidebar = () => {
     <>
       <div className="menu">
         <ul>
-          {/* <li>
+          <li>
             <OverlayTrigger
               placement="bottom"
               overlay={<Tooltip id={`tooltip-bottom`}>Home</Tooltip>}
@@ -19,8 +20,8 @@ const Sidebar = () => {
                 <AiFillHome />
               </a>
             </OverlayTrigger>
-          </li> */}
-          {/* <li>
+          </li>
+          <li>
             <OverlayTrigger
               placement="bottom"
               overlay={<Tooltip id={`tooltip-bottom`}>Profile</Tooltip>}
@@ -29,7 +30,7 @@ const Sidebar = () => {
                 <FaUserCircle />
               </a>
             </OverlayTrigger>
-          </li> */}
+          </li>
           <li>
             <OverlayTrigger
               placement="bottom"
