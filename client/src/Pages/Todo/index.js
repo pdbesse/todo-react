@@ -6,7 +6,6 @@ import TodoForm from '../../components/Todos/TodoForm/TodoForm';
 export default function Todos() {
 
   return (
-    <main>
       <div className="flex-row justify-center">
         <div
           className="col-12 col-md-10 mb-3 p-3"
@@ -20,6 +19,5 @@ export default function Todos() {
             />
         </div>
       </div>
-    </main>
   );
 };
