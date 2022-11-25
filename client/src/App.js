@@ -70,7 +70,7 @@ function App() {
                     <Sidebar />
                   </Col>
                 </MediaQuery>
-                <Col md={11}>
+                <Col>
                   {" "}
                   <BrowserRouter>
                     <Routes>
