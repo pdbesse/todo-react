@@ -2,7 +2,7 @@
 
 ---
 ## Description
-A simple todo list app made with React, GraphQL, MongoDB, mongoose, Node, JSON Web Token, Express, React Bootstrap.
+A simple todo list app made with React, GraphQL, MongoDB, mongoose, Node, JSON Web Token, Express, React Bootstrap. Todos are stored in MongoDB with GraphQL.
 
 ---
 ### Badges
