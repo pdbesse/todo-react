@@ -25,14 +25,14 @@ export default function TodoList() {
             {todos &&
                 todos.map((todo) => (
                     <div key={todo._id} className="card mb-3">
-                        <h4 className="card-header bg-primary text-light p-2 m-0">
+                        {/* <h4 className="card-header bg-primary text-light p-2 m-0">
                             You <br />
                             <span style={{ fontSize: '1rem' }}>
                                 had this to do on {todo.createdAt}
                             </span>
-                        </h4>
+                        </h4> */}
                         <div className="card-body bg-light p-2">
-                            <p>{todo.todoText}</p>
+                            <p>{todo.todoText} || {todo.createdAt}</p>
                         </div>
                     </div>
                 ))}
