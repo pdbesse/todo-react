@@ -14,7 +14,7 @@ const todoSchema = new Schema(
       createdAt: {
         type: Date,
         default: Date.now,
-        get: (timestamp) => new Date(timestamp).toLocaleTimeString(),
+        get: (timestamp) => new Date(timestamp).toLocaleString(),
       },
     },
     {
