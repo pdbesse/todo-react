@@ -34,7 +34,7 @@ const Sidebar = () => {
           <li>
             <OverlayTrigger
               placement="bottom"
-              overlay={<Tooltip id={`tooltip-bottom`}>Matches</Tooltip>}
+              overlay={<Tooltip id={`tooltip-bottom`}>Todo</Tooltip>}
             >
               <a href="/todo" className="header_a">
                 <FiCheckSquare />
