@@ -66,7 +66,7 @@ function App() {
                 {" "}
                 { }
                 <MediaQuery minWidth={2000}>
-                  <Col md={1}>
+                  <Col md={8}>
                     <Sidebar />
                   </Col>
                 </MediaQuery>
@@ -84,7 +84,7 @@ function App() {
             ) : (
               <BrowserRouter>
                 <Routes>
-                  <Route path="/profile" element={<Loader />} />
+                  {/* <Route path="/profile" element={<Loader />} /> */}
                   <Route path="/" element={<LandingPage />} />
                   <Route path="/signin" element={<LoginPage />} />
                   <Route path="/signup" element={<SignUp />} />
