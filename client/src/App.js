@@ -60,7 +60,7 @@ function App() {
             </MediaQuery>
           )}
 
-          <Row className="center">
+          <Row className="center col-8">
             {Auth.loggedIn() ? (
               <>
                 {" "}
@@ -70,7 +70,7 @@ function App() {
                     <Sidebar />
                   </Col>
                 </MediaQuery>
-                <Col>
+                <Col md={8}>
                   {" "}
                   <BrowserRouter>
                     <Routes>
