@@ -43,7 +43,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const renderPages = () => {};
 function App() {
 
   return (
@@ -60,13 +59,17 @@ function App() {
             </MediaQuery>
           )}
 
-          <Row className="center col-8">
+          <Row 
+          className="center"
+          >
             {Auth.loggedIn() ? (
               <>
                 {" "}
                 { }
                 <MediaQuery minWidth={2000}>
-                  <Col md={8}>
+                  <Col 
+                  md={8}
+                  >
                     <Sidebar />
                   </Col>
                 </MediaQuery>
