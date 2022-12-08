@@ -89,28 +89,28 @@ export default function TodoList() {
     return (
         <div>
             {Auth.loggedIn() ? (
-                <div className='todoContainer'>
-                    <Row className='align-items-center'>
-                        <Form className='mx-auto' onSubmit={handleFormSubmit}>
-                            <div>
-                                <Form.Group controlId="formTodo">
-                                    <Stack gap={2}>
-                                        <div className='label todos'>
-                                            <Form.Label>Add Todo</Form.Label>
-                                        </div>
-                                        <div className='group'>
-                                            <Form.Control type="text control" placeholder="What do you have to do?" name='todoText'
-                                                onChange={handleChange} />
-                                        </div>
-                                    </Stack>
-                                </Form.Group>
-                            </div>
-                            <Button variant="outline-success" className='button' type='submit'>Add</Button>
-                        </Form>
-                        <Button variant="outline-danger" className='button' size="large"
-                        // onClick={handleClearTodos}
-                        >Clear completed</Button>
-                    </Row>
+                <div
+                // className='todoContainer'
+                >
+                    <Form onSubmit={handleFormSubmit}>
+                        <div>
+                            <Form.Group controlId="formTodo">
+                                <Stack gap={2}>
+                                    <div className='todos'>
+                                        <Form.Label>Add Todo</Form.Label>
+                                    </div>
+                                    <div>
+                                        <Form.Control type="text control" placeholder="What do you have to do?" name='todoText'
+                                            onChange={handleChange} />
+                                    </div>
+                                </Stack>
+                            </Form.Group>
+                        </div>
+                        <Button variant="outline-success" className='button' type='submit'>Add</Button>
+                    </Form>
+                    <Button variant="outline-danger" size="large"
+                    // onClick={handleClearTodos}
+                    >Clear completed</Button>
                 </div>
             ) : (
                 <p>Please Login</p>
