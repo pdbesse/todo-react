@@ -96,13 +96,13 @@ export default function TodoList() {
                         <div>
                             <Form.Group controlId="formTodo">
                                 <Stack gap={2}>
-                                    <div className='todos'>
+                                    <p className='todos'>
                                         <Form.Label>Add Todo</Form.Label>
-                                    </div>
-                                    <div>
+                                    </p>
+                                    <p>
                                         <Form.Control type="text control" placeholder="What do you have to do?" name='todoText'
                                             onChange={handleChange} />
-                                    </div>
+                                    </p>
                                 </Stack>
                             </Form.Group>
                         </div>
