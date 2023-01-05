@@ -66,6 +66,7 @@ export default function TodoList() {
             });
             // console.log(Auth.getProfile().data.username)
 
+            
             setTodoText({
                 todoText: ''
             })
